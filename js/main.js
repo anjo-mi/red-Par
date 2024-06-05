@@ -31,34 +31,37 @@ new Card('images/tulin.png', 19),
 new Card('images/tulin.png', 20),
 ]
 
-function startTimer(duration){
-    let future = Date.now() + duration
+function startTimer(duration){                                          //declare a function to take an amount of time
+    let future = Date.now() + duration                                  //add that amount of time to the current registered date in ms
     
-    document.querySelector('.timer').innerText = duration / 1000
+    document.querySelector('.timer').innerText = duration / 1000        //divide out the ms to record just seconds, and display it where theres a class of timer
 
-    const timer = setInterval(() => {
-        let time = future - Date.now()
-        let remains = Math.floor(time % (1000 * 60) / 1000)
-        document.querySelector('.timer').innerText = remains
-        if (remains <= 0){
-            clearInterval(timer)
-            document.querySelector('.timer').innerText = 'Be Quicker!'
+    const timer = setInterval(() => {                                   //call the set interval to run an anoymous function that will repeat every second (line 49)
+        let time = future - Date.now()                                  //subtract the time it was (line 35) by the time it is (calls date.now every second), every second (lines 39, 49)
+        let remains = Math.floor(time % (1000 * 60) / 1000)             //each time the interval is met, take that diffrence (comment 40) (first time 59000) and figure out how much remains
+                                                                        //      after dividing by 60000 (in this instance 59000 and lower will always same number)
+                                                                        //      divide by 1000 and set that number equal to a variable (line 39)
+        document.querySelector('.timer').innerText = remains            //still each second, display that number where theres a class timer
+        if (remains <= 0){                                              //when the interval has been met enough time to count down to zero or beyond
+            clearInterval(timer)                                        //stop the intervals from recurring
+            document.querySelector('.timer').innerText = 'Be Quicker!'  //display some friendly encouragement
         }
-    },1000)
+    },1000)                                                             //delay the interval every 1000ms after the last time its been run
     
     
 }
 
 function shuffle(arr){
-    let currInd = arr.length
+    let currInd = arr.length                                        //set a variable = to the array length
 
-    while (currInd != 0){
-        let rando = Math.floor(Math.random() * currInd)
-        currInd--
-
-        [arr[currInd], arr[rando]] = [arr[rando], arr[currInd]]
+    while (currInd != 0){                                           // while that variable is still more than 0
+        let rando = Math.floor(Math.random() * currInd)             //set another variable = to a random number less than the array length
+        currInd--                                                   //subtract 1 from  the arr.length variable so it will rep an index thats inside the array
+                                                                    //^^ line 55 will make sure you're not going to be running code on 0-1
+        [arr[currInd], arr[rando]] = [arr[rando], arr[currInd]]     //swap the placement of the element with the random element
+                                                                    //switch every element backwrds 1 by 1 with a random element
     }
-    return arr
+    return arr                                                      //return the array after every element has been given the opportunity to be switched (line 55)
 }
 
 document.querySelector('.shuffle').addEventListener('click', () =>{
