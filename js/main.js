@@ -5,8 +5,14 @@ function Card(pic, location){
 
 let attempts = 0
 let matches = 0
+let recordAttempt = 0
+let recordTime = 0
+let recordMatches = 0
 let tries = document.getElementById('attempt')
 let success = document.getElementById('match')
+let recordAttemptDisplay = document.querySelector('.least').innerText
+let recordTimeDisplay = document.querySelector('.shortest').innerText
+let recordMatchesDisplay = document.querySelector('.incomplete').innerText
 
 let backs = [
 new Card('images/linkWW.webp', 1),
@@ -42,9 +48,17 @@ function startTimer(duration){                                          //declar
                                                                         //      after dividing by 60000 (in this instance 59000 and lower will always same number)
                                                                         //      divide by 1000 and set that number equal to a variable (line 39)
         document.querySelector('.timer').innerText = remains            //still each second, display that number where theres a class timer
-        if (remains <= 0){                                              //when the interval has been met enough time to count down to zero or beyond
-            clearInterval(timer)                                        //stop the intervals from recurring
+        if (remains <= 0){       
+            console.log(matches)                                       //when the interval has been met enough time to count down to zero or beyond
+            clearInterval(timer)
+                if (matches > recordMatches){
+                    recordMatches = matches
+                    console.log(recordMatches)
+                    recordMatchesDisplay = recordMatches
+                }                                                      //stop the intervals from recurring
             document.querySelector('.timer').innerText = 'Be Quicker!'  //display some friendly encouragement
+        }else if (matches === 10){
+            clearInterval(timer)
         }
     },1000)                                                             //delay the interval every 1000ms after the last time its been run
     
