@@ -15,6 +15,8 @@ let recordTimeDisplay = document.querySelector('.shortest')
 let recordMatchesDisplay = document.querySelector('.incomplete')
 
 !isFinite(recordAttempt) && recordAttemptDisplay.classList.add('correct')       //hide display of record
+!isFinite(recordTime) && recordTimeDisplay.classList.add('correct')            //hide display of time
+
 
 let backs = [
 new Card('images/linkWW.webp', 1),
@@ -61,10 +63,18 @@ function startTimer(duration){                                          //declar
             document.querySelector('.timer').innerText = 'Be Quicker!'  //display some friendly encouragement
         }else if (matches === 10){
             clearInterval(timer)
+            recordMatches = matches
+            recordMatchesDisplay.innerText = recordMatches
             if (attempts < recordAttempt){                              //check if the record is broken, if so set the new record and set it as the inner text then unhide display 
                 recordAttempt = attempts
                 recordAttemptDisplay.innerText = recordAttempt          // dont forget to subtract from 60 before checking record for time
                 recordAttemptDisplay.classList.remove('correct')
+            }
+            let time = 60 - remains
+            if (time < recordTime){
+                recordTime = time
+                recordTimeDisplay.innerText = recordTime
+                recordTimeDisplay.classList.remove('correct')
             }
         }
     },1000)                                                             //delay the interval every 1000ms after the last time its been run
