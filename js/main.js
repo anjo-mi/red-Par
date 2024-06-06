@@ -3,6 +3,7 @@ function Card(pic, location){
     this.location = location;
 }
 
+let noClick                                                                     //made noclick global
 let attempts = 0
 let matches = 0
 let recordAttempt = Infinity
@@ -52,8 +53,8 @@ function startTimer(duration){                                          //declar
                                                                         //      after dividing by 60000 (in this instance 59000 and lower will always same number)
                                                                         //      divide by 1000 and set that number equal to a variable (line 39)
         document.querySelector('.timer').innerText = remains            //still each second, display that number where theres a class timer
-        if (remains <= 0){       
-            console.log(matches)                                       //when the interval has been met enough time to count down to zero or beyond
+        if (remains <= 0){                                              //when the interval has been met enough time to count down to zero or beyond
+            noClick = true
             clearInterval(timer)
                 if (matches > recordMatches){                           //check if the record is broken and if so replace the display of the record
                     recordMatches = matches
@@ -62,6 +63,7 @@ function startTimer(duration){                                          //declar
                 }                                                      //stop the intervals from recurring
             document.querySelector('.timer').innerText = 'Be Quicker!'  //display some friendly encouragement
         }else if (matches === 10){
+            noClick = true
             clearInterval(timer)
             recordMatches = matches
             recordMatchesDisplay.innerText = recordMatches
@@ -112,7 +114,7 @@ document.querySelector('.shuffle').addEventListener('click', () =>{
 document.addEventListener('DOMContentLoaded', () => {
     const cards = document.querySelectorAll('.card')
     let flippedCards = []
-    let noClick = false
+    noClick = false                                                                 //allow clicks once the dom is loaded
     cards.forEach(card => {
         card.addEventListener('click', () =>{
             if (noClick || card.classList.contains('flipped')) return;
