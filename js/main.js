@@ -97,6 +97,18 @@ function shuffle(arr){
     return arr                                                      //return the array after every element has been given the opportunity to be switched (line 55)
 }
 
+function playAgain(str){
+    prompt(str)
+    document.querySelectorAll('.card').classList.remove('correct', 'hidden')    //unflip all cards, and make them visible, allow cards to be clicked again, reset counters
+    noClick = false
+    attempts = 0
+    matches = 0
+    document.querySelector('.timer').innerText = '60'
+}
+
+
+
+
 document.querySelector('.shuffle').addEventListener('click', () =>{
     startTimer(60000)
     const shuffled = shuffle(backs)
