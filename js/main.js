@@ -5,14 +5,16 @@ function Card(pic, location){
 
 let attempts = 0
 let matches = 0
-let recordAttempt = 0
-let recordTime = 0
+let recordAttempt = Infinity
+let recordTime = Infinity
 let recordMatches = 0
 let tries = document.getElementById('attempt')
 let success = document.getElementById('match')
-let recordAttemptDisplay = document.querySelector('.least').innerText
-let recordTimeDisplay = document.querySelector('.shortest').innerText
-let recordMatchesDisplay = document.querySelector('.incomplete').innerText
+let recordAttemptDisplay = document.querySelector('.least')
+let recordTimeDisplay = document.querySelector('.shortest')
+let recordMatchesDisplay = document.querySelector('.incomplete')
+
+!isFinite(recordAttempt) && recordAttemptDisplay.classList.add('correct')       //hide display of record
 
 let backs = [
 new Card('images/linkWW.webp', 1),
@@ -51,14 +53,19 @@ function startTimer(duration){                                          //declar
         if (remains <= 0){       
             console.log(matches)                                       //when the interval has been met enough time to count down to zero or beyond
             clearInterval(timer)
-                if (matches > recordMatches){
+                if (matches > recordMatches){                           //check if the record is broken and if so replace the display of the record
                     recordMatches = matches
                     console.log(recordMatches)
-                    recordMatchesDisplay = recordMatches
+                    recordMatchesDisplay.innerText = recordMatches
                 }                                                      //stop the intervals from recurring
             document.querySelector('.timer').innerText = 'Be Quicker!'  //display some friendly encouragement
         }else if (matches === 10){
             clearInterval(timer)
+            if (attempts < recordAttempt){                              //check if the record is broken, if so set the new record and set it as the inner text then unhide display 
+                recordAttempt = attempts
+                recordAttemptDisplay.innerText = recordAttempt          // dont forget to subtract from 60 before checking record for time
+                recordAttemptDisplay.classList.remove('correct')
+            }
         }
     },1000)                                                             //delay the interval every 1000ms after the last time its been run
     
