@@ -15,6 +15,43 @@ body {
     margin: auto;
 }
 
+.gameover{
+    /* display: none; */
+    position: absolute;
+    margin: auto;
+    width: 50%;
+    height: 400px;
+    z-index: 1;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background-color: rgb(44, 238, 18);
+    color: rgb(49, 49, 49);
+}
+
+.gameover p{
+    text-align: center;
+    font: 60px solid bolder;
+}
+
+.gameover .options{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.gameover button{
+    display: inline;
+    width: 30%;
+    background: black;
+    font: 30px solid;
+    color: bisque;
+}
+
+.gameover button:hover{
+    cursor: pointer;
+    outline: 4px solid rgb(182, 182, 182);
+}
+
 h1{
     grid-column-start: 1;
     grid-column-end: 3;
