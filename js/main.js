@@ -115,11 +115,12 @@ function playAgain(){
         })
     })
     document.querySelector('.shuffle').removeEventListener
-    // gameover needs to display none
+    document.querySelector('.gameover').style.display = 'none'
 }
 
 function optOut(){
-
+    document.querySelector('.gameover').style.display = 'none'
+    document.getElementById('youSure').style.display = 'block'
 }
 
 // function play(){
