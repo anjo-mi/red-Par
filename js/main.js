@@ -97,17 +97,42 @@ function shuffle(arr){
     return arr                                                      //return the array after every element has been given the opportunity to be switched (line 55)
 }
 
-function playAgain(str){
-    prompt(str)
-    document.querySelectorAll('.card').classList.remove('correct', 'hidden')    //unflip all cards, and make them visible, allow cards to be clicked again, reset counters
+function playAgain(){
+    
+    document.querySelectorAll('.card').classList.remove('correct', 'hidden')
     noClick = false
     attempts = 0
     matches = 0
     document.querySelector('.timer').innerText = '60'
+    document.querySelector('.shuffle').addEventListener('click', () => {
+        startTimer(60000)
+        const shuffled = shuffle(backs)
+        const items = document.querySelector('.card')
+        shuffled.forEach((card,index) =>{
+            const item = items[index]
+            const back = item.querySelector('.back img')
+            back.src = card.pic
+        })
+    })
+    document.querySelector('.shuffle').removeEventListener
+    // gameover needs to display none
 }
 
+function optOut(){
 
+}
 
+// function play(){
+//     startTimer(60000)
+//     const shuffled = shuffle(backs)
+//     const items = document.querySelectorAll('.card')
+//     shuffled.forEach((card,index) =>{
+//         const item = items[index]
+//         const back = item.querySelector('.back img')
+//         back.src = card.pic
+//     })
+// }
+// ^^^try calling on event listener and reuse in play again
 
 document.querySelector('.shuffle').addEventListener('click', () =>{
     startTimer(60000)
@@ -118,6 +143,7 @@ document.querySelector('.shuffle').addEventListener('click', () =>{
         const back = item.querySelector('.back img')
         back.src = card.pic
     })
+    document.querySelector('.shuffle').removeEventListener
 })
 
 

@@ -16,7 +16,7 @@ body {
 }
 
 .gameover{
-    /* display: none; */
+    display: none;
     position: absolute;
     margin: auto;
     width: 50%;
