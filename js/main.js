@@ -56,6 +56,9 @@ function startTimer(duration){                                          //declar
         if (remains <= 0){                                              //when the interval has been met enough time to count down to zero or beyond
             noClick = true
             clearInterval(timer)
+            setTimeout(() => {
+                document.querySelector('.gameover').style.display = 'block'
+            }, 5000)
                 if (matches > recordMatches){                           //check if the record is broken and if so replace the display of the record
                     recordMatches = matches
                     console.log(recordMatches)
@@ -65,6 +68,9 @@ function startTimer(duration){                                          //declar
         }else if (matches === 10){
             noClick = true
             clearInterval(timer)
+            setTimeout(() => {
+                document.querySelector('.gameover').style.display = 'block'
+            }, 5000)
             recordMatches = matches
             recordMatchesDisplay.innerText = recordMatches
             if (attempts < recordAttempt){                              //check if the record is broken, if so set the new record and set it as the inner text then unhide display 
