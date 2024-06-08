@@ -99,23 +99,18 @@ function shuffle(arr){
 
 function playAgain(){
     
-    document.querySelectorAll('.card').classList.remove('correct', 'hidden')
+    let cards = document.querySelectorAll('.card')
+    cards.forEach(card => card.classList.remove('correct'))
     noClick = false
     attempts = 0
     matches = 0
     document.querySelector('.timer').innerText = '60'
-    document.querySelector('.shuffle').addEventListener('click', () => {
-        startTimer(60000)
-        const shuffled = shuffle(backs)
-        const items = document.querySelector('.card')
-        shuffled.forEach((card,index) =>{
-            const item = items[index]
-            const back = item.querySelector('.back img')
-            back.src = card.pic
-        })
-    })
-    document.querySelector('.shuffle').removeEventListener
+    let shuffleBtn = document.querySelectorAll('.shuffle')
+    shuffleBtn.forEach( button => button.addEventListener('click', play()))
+
+
     document.querySelector('.gameover').style.display = 'none'
+
 }
 
 function optOut(){
@@ -123,19 +118,7 @@ function optOut(){
     document.getElementById('youSure').style.display = 'block'
 }
 
-// function play(){
-//     startTimer(60000)
-//     const shuffled = shuffle(backs)
-//     const items = document.querySelectorAll('.card')
-//     shuffled.forEach((card,index) =>{
-//         const item = items[index]
-//         const back = item.querySelector('.back img')
-//         back.src = card.pic
-//     })
-// }
-// ^^^try calling on event listener and reuse in play again
-
-document.querySelector('.shuffle').addEventListener('click', () =>{
+function play(){
     startTimer(60000)
     const shuffled = shuffle(backs)
     const items = document.querySelectorAll('.card')
@@ -144,8 +127,14 @@ document.querySelector('.shuffle').addEventListener('click', () =>{
         const back = item.querySelector('.back img')
         back.src = card.pic
     })
-    document.querySelector('.shuffle').removeEventListener
-})
+    document.querySelectorAll('.shuffle').forEach(btn => btn.removeEventListener('click', play()))
+}
+
+
+
+let begin = document.querySelectorAll('.shuffle')
+    begin.forEach(btn => btn.addEventListener('click', play()))
+
 
 
 
