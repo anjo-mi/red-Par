@@ -106,7 +106,7 @@ function playAgain(){
     matches = 0
     document.querySelector('.timer').innerText = '60'
     let shuffleBtn = document.querySelectorAll('.shuffle')
-    shuffleBtn.forEach( button => button.addEventListener('click', play()))
+    shuffleBtn.forEach( button => button.addEventListener('click', play))
 
 
     document.querySelector('.gameover').style.display = 'none'
@@ -127,13 +127,13 @@ function play(){
         const back = item.querySelector('.back img')
         back.src = card.pic
     })
-    document.querySelectorAll('.shuffle').forEach(btn => btn.removeEventListener('click', play()))
+    document.querySelectorAll('.shuffle').forEach(btn => btn.removeEventListener('click', play))
 }
 
 
 
 let begin = document.querySelectorAll('.shuffle')
-    begin.forEach(btn => btn.addEventListener('click', play()))
+    begin.forEach(btn => btn.addEventListener('click', play))
 
 
 
