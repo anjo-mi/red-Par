@@ -115,7 +115,7 @@ function playAgain(){
     document.querySelector('.timer').innerText = '60'
     let shuffleBtn = document.querySelectorAll('.shuffle')
     shuffleBtn.forEach( button => button.addEventListener('click', play))
-
+    document.querySelector('.youSure').style.display = 'none'
 
     document.querySelector('.gameover').style.display = 'none'
 
