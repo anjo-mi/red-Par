@@ -120,7 +120,7 @@ function playAgain(){
 }
 
 function optOut(){
-    document.querySelector('.gameover').style.display = 'none'
+    document.querySelector('.gameover').style.display = 'none';
     document.getElementById('youSure').style.display = 'block'
 }
 
