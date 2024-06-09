@@ -105,6 +105,41 @@ function shuffle(arr){
     return arr                                                      //return the array after every element has been given the opportunity to be switched (line 55)
 }
 
+function shuffBtn(){
+    const cards = document.querySelectorAll('.card')
+    let flippedCards = []
+    noClick = false                                                                 //allow clicks once the dom is loaded
+    cards.forEach(card => {
+        card.addEventListener('click', () =>{
+            if (noClick || card.classList.contains('flipped')) return;
+            card.classList.add('flipped')
+            flippedCards.push(card)
+            if (flippedCards.length === 2){
+                tries.innerText = ++attempts
+                noClick = true
+            }
+            if (flippedCards[0].querySelector('.back img').src === flippedCards[1].querySelector('.back img').src){
+                console.log(flippedCards)
+                setTimeout(() => {
+                    success.innerText = ++matches
+                    flippedCards[0].classList.add('correct')
+                    flippedCards[1].classList.add('correct')
+                    flippedCards = []
+                    noClick = false
+                }, 1000)
+            }
+            else {
+                setTimeout(() => {
+                    flippedCards[0].classList.remove('flipped')
+                    flippedCards[1].classList.remove('flipped')
+                    flippedCards = []
+                    noClick = false
+                }, 1500)
+            }
+        })
+    })
+}
+
 function playAgain(){
     
     let cards = document.querySelectorAll('.card')
@@ -116,7 +151,7 @@ function playAgain(){
     let shuffleBtn = document.querySelectorAll('.shuffle')
     shuffleBtn.forEach( button => button.addEventListener('click', play))
     document.querySelector('.youSure').style.display = 'none'
-
+    document.querySelector('.shuffle button').style.backgroundColor = 'white'
     document.querySelector('.gameover').style.display = 'none'
 
 }
@@ -155,11 +190,12 @@ let begin = document.querySelectorAll('.shuffle')
     begin.forEach(btn => btn.addEventListener('click', play))
 
 
-
+document.querySelector('.shuffle').addEventListener('click' , shuffBtn)
 
 
 document.addEventListener('DOMContentLoaded', () => {
     const cards = document.querySelectorAll('.card')
+    cards.forEach(card => card.classList.remove('flipped'))
     let flippedCards = []
     noClick = false                                                                 //allow clicks once the dom is loaded
     cards.forEach(card => {
