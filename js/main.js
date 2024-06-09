@@ -144,7 +144,7 @@ function play(){
         back.src = card.pic
     })
     document.querySelectorAll('.shuffle').forEach(btn => btn.removeEventListener('click', play))
-    document.querySelectorAll('.playAgain').forEach(btn => btn.addEventListener('click',play ))
+    document.querySelectorAll('.playAgain').forEach(btn => btn.addEventListener('click',playAgain ))
     document.querySelector('.notNow').addEventListener('click', optOut)
 }
 
