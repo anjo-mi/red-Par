@@ -124,6 +124,7 @@ function playAgain(){
 function optOut(){
     document.querySelector('.gameover').style.display = 'none';
     document.getElementById('youSure').style.display = 'block'
+    document.querySelector('.shuffle button').style.backgroundColor = 'black'
 }
 
 function play(){
