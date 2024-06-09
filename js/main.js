@@ -65,6 +65,7 @@ function startTimer(duration){                                          //declar
                     recordMatchesDisplay.innerText = recordMatches
                 }                                                      //stop the intervals from recurring
             document.querySelector('.timer').innerText = 'Be Quicker!'  //display some friendly encouragement
+            remains = 60
         }else if (matches === 10){
             noClick = true
             clearInterval(timer)
@@ -84,6 +85,7 @@ function startTimer(duration){                                          //declar
                 recordTimeDisplay.innerText = recordTime
                 recordTimeDisplay.classList.remove('correct')
             }
+            remains = 60
         }
     },1000)                                                             //delay the interval every 1000ms after the last time its been run
     
@@ -125,6 +127,14 @@ function optOut(){
 }
 
 function play(){
+    matches = 0
+    attempts = 0
+    tries.innerText = attempts
+    success.innerText = matches
+    remains = 60
+    document.querySelector('.timer').innerText = remains
+    noClick = false
+    document.querySelector('.gameover').style.display ='none'
     startTimer(60000)
     const shuffled = shuffle(backs)
     const items = document.querySelectorAll('.card')
