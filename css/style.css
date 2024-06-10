@@ -1,6 +1,5 @@
 *{
     box-sizing: border-box;
-    outline: 1px solid black;
 }
 
 body {
@@ -114,6 +113,11 @@ ul{
     column-gap: 5%;
     row-gap: 5%;
 
+}
+
+.board,
+.card{
+    outline: 1px solid black;
 }
 
 .board section{
