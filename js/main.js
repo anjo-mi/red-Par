@@ -107,6 +107,8 @@ function shuffle(arr){
 
 function shuffBtn(){
     const cards = document.querySelectorAll('.card')
+    cards.forEach(card => card.classList.remove('flipped'))
+    cards.forEach(card => card.classList.remove('correct'))
     let flippedCards = []
     noClick = false                                                                 //allow clicks once the dom is loaded
     cards.forEach(card => {
@@ -169,7 +171,7 @@ function play(){
     success.innerText = matches
     remains = 60
     document.querySelector('.timer').innerText = remains
-    noClick = false
+    shuffBtn()
     document.querySelector('.gameover').style.display ='none'
     startTimer(60000)
     const shuffled = shuffle(backs)
